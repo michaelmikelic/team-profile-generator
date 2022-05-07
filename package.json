@@ -1,0 +1,25 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "used for team profile generator project",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmikelic/team-profile-generator.git"
+  },
+  "author": "Michael Mikelic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelmikelic/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/michaelmikelic/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
