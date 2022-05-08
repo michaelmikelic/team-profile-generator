@@ -1,14 +1,17 @@
-// Required packages
-const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
+const inquirer = require("inquirer");
+
 const fileDirectory = path.resolve(__dirname, "dist");
 const filePath = path.join(fileDirectory, "index.html");
 
-// Required module exports
+
+// staff
+const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
+
 const renderHTML = require("./lib/generateHTML");
 
 // Employee array
@@ -19,32 +22,33 @@ const questions = [
     {
         type: "input",
         name: "name",
-        message: "What is the name of this employee?"
+        message: "Employee Name?"
     },
     {
         type: "input",
         name: "id",
-        message: "What is the ID of this employee?"
+        message: "Employee ID Number?"
     },
     {
         type: "input",
         name: "email",
-        message: "What is this employee's email?"
+        message: "Employee email address?"
     },
     {
         type: "list",
         name: "role",
-        message: "What role does this employee have?",
+        message: "Employee position?",
         choices: ["Engineer", "Intern", "Manager"]
     }
     ]
 
-    // Questions for manager role
+    // manager role 
+
     managerQuestions = [
         {
             type: "input",
             name: "officeNumber",
-            message: "What is the manager's office number? (Required)",
+            message: "Office number? (Required)",
             validate: officeNumber => {
                 if (officeNumber) {
                   return true;
@@ -61,7 +65,7 @@ const questions = [
         {
             type: "input",
             name: "github",
-            message: "What is the engineer's Github Username? (Required)",
+            message: "Github Username? (Required)",
             validate: github => {
                 if (github) {
                   return true;
@@ -109,7 +113,7 @@ const questions = [
                 }
             })
         } else {
-            console.log("Welcome to the team profile generator. Please enter your team information below:")
+            console.log("Welcome to the profile generator. Please enter your team information below:")
             newEmployee()
         }
     };   
@@ -155,7 +159,7 @@ const questions = [
     
     };
 
-    // Function that asks if you would like to add an employee. This will keep coming up until you are finished. When you're finished and say no, it will generate the index.html file
+    // Function that asks if you would like to add an employee
     const addEmployee = async (array) => {
        await inquirer
         .prompt({
@@ -169,7 +173,6 @@ const questions = [
                 newEmployee();
             } 
             else if (await createEmployee === false) {
-            // If the dist directory does not exist, then it creates the dist directory before creating the index.html file
             if (!fs.existsSync(fileDirectory)) {
                 fs.mkdirSync(fileDirectory)
             }
@@ -189,5 +192,5 @@ const questions = [
         }
     })
 };
-    // Function call to initialize app
+    // Function call to initialize app and make it work!
     init();
